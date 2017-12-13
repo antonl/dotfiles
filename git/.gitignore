@@ -1,4 +1,4 @@
-*.~un
+*.un~
 .*.swp
 .bundle
 vendor/bundle

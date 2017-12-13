@@ -4,10 +4,19 @@
 
 " set shell to bash
 set shell=/bin/sh
+set encoding=utf-8
 
 " Turn off compatible mode
 set nocompatible
 filetype off
+
+" Add vimplugging
+call plug#begin('~/.vim/plugged')
+
+Plug 'ajh17/VimCompletesMe'
+Plug 'alexpearce/gruvbox'
+
+call plug#end()
 
 " Remap leader to comma
 let mapleader=","
@@ -100,12 +109,10 @@ set noswapfile
 set ffs=unix,dos,mac "Default file types
 syntax enable
 
-set guifont=Menlo:h14
-set guioptions=Aace
-colorscheme molokai
 set t_Co=256
 set background=dark
-set encoding=utf-8
+"set termguicolors
+colorscheme gruvbox
 
 " Enable filetype plugin
 filetype on
