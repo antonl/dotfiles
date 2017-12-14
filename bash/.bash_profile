@@ -16,5 +16,5 @@ if [ -f ~/.bashrc ]; then
 fi
 
 export PS1="\n\[\033[38;5;1m\]\u\[$(tput sgr0)\]@\[\033[38;5;5m\]\h\[$(tput sgr0)\] \[\033[38;5;4m\]\w\[$(tput sgr0)\]\n> "
-export PATH=$HOME/.local/bin:$HOME/.local/sbin
+export PATH=$HOME/.local/bin:$HOME/.local/sbin:/usr/local/bin:/usr/bin
 export MANPATH=$HOME/.local/man:$MANPATH

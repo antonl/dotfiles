@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export PATH=$HOME/.local/bootstrap/bin:$PATH
+export PATH=$HOME/.local/gcc7/bin:$PATH
 
 WORKDIR=$HOME/.work
 mkdir -p $WORKDIR
@@ -84,7 +84,7 @@ rm -rf $outp
 mkdir $outp
 
 cd $outp
-$outp/../shared_tree/configure --prefix=$HOME/.local/bootstrap \
+$outp/../shared_tree/configure --prefix=$HOME/.local/gcc7 \
                                --enable-languages=c,c++,fortran \
                                --enable-ld=default \
                                --enable-gold \
