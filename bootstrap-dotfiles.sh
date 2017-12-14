@@ -4,6 +4,7 @@
 
 # create a local folder structure
 mkdir -p $HOME/.local
+mkdir -p $HOME/.software
 mkdir -p $HOME/Downloads
 
 # obtain GNU stow
@@ -11,9 +12,18 @@ cd $HOME/Downloads
 curl -L -O http://ftp.gnu.org/gnu/stow/stow-2.2.2.tar.gz
 tar zxf stow-2.2.2.tar.gz
 cd $HOME/Downloads/stow-2.2.2
-./configure --prefix=$HOME/.local && make install
-STOWBIN=$HOME/.local/bin/stow
+
+export PERL5LIB=$HOME/.software/stow/.local/share/perl5
+./configure --prefix=$HOME/.local 
+make install prefix=$HOME/.software/stow/.local
+
+STOWBIN=$HOME/.software/stow/.local/bin/stow
 
 # add the bash_profile by default
-cd $HOME/.dotfiles
+pushd $HOME/.software
+$STOWBIN stow
+popd
+
+pushd $HOME/.dotfiles
 $STOWBIN bash
+popd
