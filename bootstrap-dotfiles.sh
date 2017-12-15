@@ -2,54 +2,34 @@
 
 # script assumes dotfiles is at $HOME/.dotfiles
 
-# create a local folder structure
+# dir for installing software and such
 mkdir -p $HOME/.local
-mkdir -p $HOME/.software
-mkdir -p $HOME/.work
-mkdir -p $HOME/Downloads
 
-# obtain perl
-pushd $HOME/.work
+workdir=$HOME/.tmp
 
-PERLURI=http://www.cpan.org/src/5.0/perl-5.26.1.tar.gz
-if [ ! -f `basename $PERLURI` ]; then
-  curl -L -O $PERLURI
-fi
-tar zxf `basename $PERLURI`
-
-pushd `basename $PERLURI .tar.gz`
-sh Configure -Dprefix=$HOME/.local -Dinstallprefix=$HOME/.software/perl5/.local \
-             -de -Dusemultiplicity -Dusethreads -Duseithreads -Duselargefiles \
-             -Dcc=gcc
-make -j 12 && make install
-popd
+rm -rf $workdir
+mkdir $workdir
+pushd $workdir > /dev/null
 
 # obtain GNU stow
-if [ ! -f `basename $PERLURI` ]; then
-  curl -L -O http://ftp.gnu.org/gnu/stow/stow-2.2.2.tar.gz
+stow_f=stow-2.2.2.tar.gz
+
+if [ ! -f `basename $stow_f` ]; then
+  curl -L -o $stow_f http://ftp.gnu.org/gnu/stow/$stow_f
+  tar zxf $stow_f
 fi
-tar zxf stow-2.2.2.tar.gz
 
-pushd stow-2.2.2
-
-PATH=$HOME/.software/perl5/.local/bin:$PATH
-export PERL5LIB=$HOME/.software/perl5/.local/lib/perl5/5.26.1
-./configure --prefix=$HOME/.software/stow/.local \
-            --with-pmdir=$HOME/.software/stow/.local/share/perl5
+pushd `basename $stow_f .tar.gz` > /dev/null
+./configure --prefix=$HOME/.local
 make install
-popd
+popd > /dev/null
 
-STOWBIN=$HOME/.software/stow/.local/bin/stow
+popd > /dev/null
+rm -rf $workdir
 
-pushd $HOME/.software
-perl5/.local/bin/perl $STOWBIN perl5 stow
-popd
+STOWBIN=$HOME/.local/bin/stow
 
 # add the bash_profile by default
-pushd $HOME/.dotfiles
+pushd $HOME/dotfiles > /dev/null
 $STOWBIN bash
-popd
-
-popd
-
-source $HOME/.bash_profile
+popd > /dev/null
