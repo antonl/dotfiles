@@ -20,14 +20,14 @@ if [ ! -f `basename $stow_f` ]; then
 fi
 
 pushd `basename $stow_f .tar.gz` > /dev/null
-./configure --prefix=$HOME/.local
+./configure --prefix=$HOME/dotfiles/.stow
 make install
 popd > /dev/null
 
 popd > /dev/null
 rm -rf $workdir
 
-STOWBIN=$HOME/.local/bin/stow
+STOWBIN=$HOME/dotfiles/.stow/bin/stow
 
 # add the bash_profile by default
 pushd $HOME/dotfiles > /dev/null
