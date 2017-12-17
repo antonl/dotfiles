@@ -15,6 +15,9 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'ajh17/VimCompletesMe'
 Plug 'alexpearce/gruvbox'
+Plug 'lifepillar/vim-solarized8'
+Plug 'jacoborus/tender'
+Plug 'gh:itchyny/lightline.vim'
 
 call plug#end()
 
@@ -109,10 +112,16 @@ set noswapfile
 set ffs=unix,dos,mac "Default file types
 syntax enable
 
-set t_Co=256
+"set t_Co=256
 set background=dark
-"set termguicolors
-colorscheme gruvbox
+
+" set Vim-specific sequences for RGB colors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
+
+colorscheme tender
+highlight Comment cterm=italic
 
 " Enable filetype plugin
 filetype on

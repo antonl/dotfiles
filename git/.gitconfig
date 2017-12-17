@@ -1,8 +1,6 @@
 [user]
   name = Anton Loukianov
   email = aloukian@stanford.edu
-[credential]
-  helper = osxkeychain
 [core]
   editor = vim
   excludesfile = ~/.gitignore

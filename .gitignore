@@ -1,2 +1,5 @@
 # ignore installed stow binary dir
 .stow
+
+# ignore pack dir
+.spack
