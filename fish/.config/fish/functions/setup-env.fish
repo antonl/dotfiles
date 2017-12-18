@@ -1,10 +1,10 @@
 function setup-env -d "Set up persistant environment variables."
   if read_confirm 'Would you like me to set up a new environment?'
 
-    echo 'Setting EDITOR and adding ~/.local/bin to PATH'
+    echo 'Setting EDITOR and adding ~/env/dope/bin to PATH'
     set -e EDITOR
     set -U -x EDITOR vim
-    set -U fish_user_paths ~/.local/bin ~/.local/sbin
+    set -U fish_user_paths ~/env/dope/bin
 
     # Set up ROOT environment if we have Homebrew installed
     if command -s brew

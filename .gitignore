@@ -1,5 +1,8 @@
 # ignore installed stow binary dir
 .stow
 
-# ignore pack dir
+# ignore spack dir
 .spack
+
+# ignore fishd universal vars
+fishd.*

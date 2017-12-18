@@ -17,7 +17,7 @@ end
 # So we must override those ourselves (again), which we do here.
 if false
   set -e EDITOR
-  set -g -x EDITOR nvim
+  set -g -x EDITOR vim
   set -g -x LD_LIBRARY_PATH ~/usr/lib:$LD_LIBRARY_PATH
   # Place Grid proxy somewhere host agnostic (it's placed in /tmp by default)
   set -g -x X509_USER_PROXY $HOME/.grid.proxy
